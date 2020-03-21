@@ -162,6 +162,7 @@ public class IntList {
     /**
      * Returns the reverse of the given IntList.
      * This method is destructive. If given null
+     *
      * as an input, returns null.
      */
     public static IntList reverse(IntList A){
@@ -174,7 +175,7 @@ public class IntList {
         *Step 5. Return the list to the caller and print it
         */
 
-        IntList rev = null;
+        IntList ptrStart = null;
         IntList ptr = A;
 
 
@@ -193,14 +194,22 @@ public class IntList {
                 ptr = ptr.rest;
                 i++;
             }
+            ptr = A;
 
-            i = size - 1;
+            // Destructive.
+            for(int j = 0;  j < size; j++){
+                ptr.first = elements[size - (j+1)];
+                ptr = ptr.rest;
+            }
+
+            // Non-destructive. iterative approach
+/*            i = size - 1;
             rev = new IntList(elements[i], null);
             A = rev;
             for(int j = i; j > 0; j--){
                 rev.rest = new IntList(elements[j-1],null);
                 rev = rev.rest;
-            }
+            }*/
         }
         return A;
     }
